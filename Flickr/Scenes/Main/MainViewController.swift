@@ -18,6 +18,8 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "FlickrApp"
+        self.navigationController?.isNavigationBarHidden = false
         recentPhotosTableView.delegate = self
         recentPhotosTableView.dataSource = self
         initComponents()
@@ -45,12 +47,12 @@ class MainViewController: UIViewController {
         expandedImageView.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage(sender:)))
         expandedImageView.addGestureRecognizer(tap)
+        self.navigationController?.isNavigationBarHidden = true
         self.view.addSubview(expandedImageView)
     }
     
     @objc func dismissFullscreenImage(sender: UITapGestureRecognizer) {
         self.navigationController?.isNavigationBarHidden = false
-        self.tabBarController?.tabBar.isHidden = false
         sender.view?.removeFromSuperview()
     }
     
